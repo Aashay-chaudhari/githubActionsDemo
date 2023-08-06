@@ -73,11 +73,12 @@ jobs:
           image:  ${{ steps.build-image.outputs.image }}
   
       - name: Deploy Amazon ECS task definition
-        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
-        with:
-          task-definition: ${{ steps.task-def.outputs.task-definition }}
-          service: dummyService 
-          cluster: fargateCluster
+        # uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+        # with:
+        #   task-definition: ${{ steps.task-def.outputs.task-definition }}
+        #   service: dummyService 
+        #   cluster: fargateCluster
+        run: aws ecs update-service --force-new-deployment --service dummyService --cluster fargateCluster
 
       
 
