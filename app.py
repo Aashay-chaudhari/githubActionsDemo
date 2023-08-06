@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_geek():
-    return 'So what to return?'
+    return 'I love coding!! AWS is so awesome!'
 
 
 if __name__ == "__main__":
