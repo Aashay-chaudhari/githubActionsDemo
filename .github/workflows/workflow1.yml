@@ -78,7 +78,9 @@ jobs:
         #   task-definition: ${{ steps.task-def.outputs.task-definition }}
         #   service: dummyService 
         #   cluster: fargateCluster
-        run: aws ecs update-service --force-new-deployment --service dummyService --cluster fargateCluster
+        run: |
+          aws ecs stop-task --cluster fargateCluster
+          aws ecs update-service --force-new-deployment --service dummyService --cluster fargateCluster
 
       
 
