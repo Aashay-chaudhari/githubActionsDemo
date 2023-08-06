@@ -85,6 +85,7 @@ jobs:
           do
               aws ecs stop-task --cluster fargateCluster --task ${element}
           done
+          ecs update-service --cluster fargateCluster --service dummyService --force-new-deployment
 
       
 
