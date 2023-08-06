@@ -79,7 +79,7 @@ jobs:
         #   service: dummyService 
         #   cluster: fargateCluster
         run: |
-          aws ecs stop-task --cluster fargateCluster
+          aws ecs stop-task --cluster arn:aws:ecs:us-east-2:593833819382:cluster/fargateCluster
           aws ecs update-service --force-new-deployment --service dummyService --cluster fargateCluster
 
       
