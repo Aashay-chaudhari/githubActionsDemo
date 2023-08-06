@@ -57,7 +57,6 @@ jobs:
           docker build -t dummyregistry .
           docker tag dummyregistry:latest 593833819382.dkr.ecr.us-east-2.amazonaws.com/dummyregistry:latest
           docker push 593833819382.dkr.ecr.us-east-2.amazonaws.com/dummyregistry:latest
-          echo "sucessful" >> $GITHUB_OUTPUT
 
 
       - name: Fill in the new image ID in the Amazon ECS task definition
