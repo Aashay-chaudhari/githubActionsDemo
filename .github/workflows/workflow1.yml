@@ -44,7 +44,21 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
 
-      
+      - name: Build, tag, and push the image to Amazon ECR
+        id: build-image
+        # env:
+        #   ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        #   IMAGE_TAG: ${{ github.sha }}
+        run: |
+          # Build a docker container and
+          # push it to ECR so that it can
+          # be deployed to ECS.
+          aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 593833819382.dkr.ecr.us-east-2.amazonaws.com
+          docker build -t dummyregistry .
+          docker tag dummyregistry:latest 593833819382.dkr.ecr.us-east-2.amazonaws.com/dummyregistry:latest
+          docker push 593833819382.dkr.ecr.us-east-2.amazonaws.com/dummyregistry:latest
+          echo "sucessful" >> $GITHUB_OUTPUT
+
 
       
 
