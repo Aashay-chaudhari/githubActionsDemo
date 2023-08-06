@@ -79,8 +79,9 @@ jobs:
         #   service: dummyService 
         #   cluster: fargateCluster
         run: |
-          aws ecs stop-task --cluster arn:aws:ecs:us-east-2:593833819382:cluster/fargateCluster
-          aws ecs update-service --force-new-deployment --service dummyService --cluster fargateCluster
+          aws ecs list-tasks --cluster <cluster_name> | jq -r ".taskArns[]" | awk '{print "aws ecs stop-task --cluster <cluster_name> --task \""$0"\""}' | sh
+          aws ecs list-services --cluster <cluster_name> | jq -r ".serviceArns[]" | awk '{print "aws ecs update-service --cluster <cluster_name> --force-new-deployment  --service \""$0"\""}' | sh
+
 
       
 
